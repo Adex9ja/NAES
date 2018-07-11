@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+   <item android:title="Alerts">
+       <menu>
+           <group android:checkableBehavior="single">
+               <item
+                   android:checked="true"
+                   android:id="@+id/general"
+                   android:icon="@drawable/forum"
+                   android:title="General Alert" />
+               <item
+                   android:id="@+id/location"
+                   android:icon="@drawable/location"
+                   android:title="My Location Alert" />
+               <item
+                   android:id="@+id/new_alert"
+                   android:title="New Alert"
+                   android:icon="@drawable/notification" />
+
+           </group>
+       </menu>
+   </item>
+    <item android:title="Others">
+        <menu>
+            <item
+                android:id="@+id/profile"
+                android:title="Profile"
+                android:icon="@drawable/gears"/>
+            <item
+                android:id="@+id/sign_out"
+                android:icon="@drawable/sign_out"
+                android:title="Sign Out" />
+        </menu>
+    </item>
+
+
+</menu>

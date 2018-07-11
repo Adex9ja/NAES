@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/fab_margin"
+    android:scrollbars="none"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity$LoginFragment">
+   <LinearLayout
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <android.support.design.widget.TextInputLayout
+           android:layout_marginTop="@dimen/medium"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               style="@style/my_text_view"
+               android:drawableLeft="@drawable/user"
+               android:drawablePadding="@dimen/fab_margin"
+               android:drawableTint="@color/colorPrimary"
+               android:id="@+id/txtFullName"
+               android:hint="Full Name"
+               android:singleLine="true"
+               android:maxLines="1"/>
+
+       </android.support.design.widget.TextInputLayout>
+       <android.support.design.widget.TextInputLayout
+           android:layout_marginTop="@dimen/medium"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               android:singleLine="true"
+               style="@style/my_text_view"
+               android:drawableLeft="@drawable/phone"
+               android:drawablePadding="@dimen/fab_margin"
+               android:drawableTint="@color/colorPrimary"
+               android:id="@+id/txtPhone"
+               android:hint="Phone Number"
+               android:inputType="phone"
+               android:maxLines="1"/>
+
+       </android.support.design.widget.TextInputLayout>
+       <android.support.design.widget.TextInputLayout
+           android:layout_marginTop="@dimen/medium"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               android:singleLine="true"
+               style="@style/my_text_view"
+               android:drawableLeft="@drawable/mail"
+               android:drawablePadding="@dimen/fab_margin"
+               android:drawableTint="@color/colorPrimary"
+               android:id="@+id/txtEmail"
+               android:hint="Email Address"
+               android:maxLines="1"/>
+
+       </android.support.design.widget.TextInputLayout>
+       <LinearLayout
+           android:layout_marginTop="@dimen/fab_margin"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:drawableTint="@color/colorPrimaryDark"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:drawableLeft="@drawable/location"/>
+           <android.support.v7.widget.AppCompatSpinner
+               android:id="@+id/spAddress"
+               android:layout_marginLeft="@dimen/fab_margin"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:entries="@array/states"></android.support.v7.widget.AppCompatSpinner>
+       </LinearLayout>
+
+       <CheckBox
+           android:id="@+id/chAgree"
+           android:layout_marginTop="@dimen/fab_margin"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:checked="true"
+           android:text="Accept Terms and Condition"/>
+       <Button
+           android:id="@+id/btnContinue"
+           style="@style/my_button"
+           android:text="Register"/>
+   </LinearLayout>
+
+
+</ScrollView>

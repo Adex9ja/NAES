@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/fab_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity$LoginFragment">
+   <LinearLayout
+       android:orientation="vertical"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@drawable/signin"
+           android:tint="@color/colorPrimaryDark"
+           android:layout_gravity="center_horizontal"/>
+       <android.support.design.widget.TextInputLayout
+           android:layout_marginTop="@dimen/fab_margin"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               style="@style/my_text_view"
+               android:drawableLeft="@drawable/mail"
+               android:drawablePadding="@dimen/fab_margin"
+               android:drawableTint="@color/colorPrimary"
+               android:id="@+id/txtEmail"
+               android:hint="Enter Email"
+               android:inputType="textEmailAddress"
+               android:maxLines="1"/>
+
+       </android.support.design.widget.TextInputLayout>
+       <android.support.design.widget.TextInputLayout
+           android:layout_marginTop="@dimen/fab_margin"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <EditText
+               style="@style/my_text_view"
+               android:drawableLeft="@drawable/phone"
+               android:drawablePadding="@dimen/fab_margin"
+               android:drawableTint="@color/colorPrimary"
+               android:id="@+id/txtPhone"
+               android:hint="Enter Phone Number"
+               android:imeOptions="actionUnspecified"
+               android:inputType="phone"
+               android:maxLines="1"/>
+
+       </android.support.design.widget.TextInputLayout>
+       <CheckBox
+           android:layout_marginTop="@dimen/fab_margin"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:checked="true"
+           android:text="Remember me"/>
+       <Button
+           android:id="@+id/btnContinue"
+           style="@style/my_button"
+           android:text="Sign In"/>
+   </LinearLayout>
+
+
+</ScrollView>

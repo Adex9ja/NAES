@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="app.qtax.com.activities.cases.CaseActivity">
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/share"
+        android:orderInCategory="100"
+        android:title="Share"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/view"
+        android:orderInCategory="100"
+        android:title="View"
+        android:icon="@android:drawable/ic_menu_view"
+        app:showAsAction="always" />
+</menu>

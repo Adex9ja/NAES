@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">NEAS</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="loggedInUser">loggedInUser</string>
+    <string name="general">General</string>
+    <string name="title_activity_login_acticity">LoginActicity</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="required_field">All fields are required</string>
+    <string name="alert_entity">alert_entity</string>
+    <string name="user_entity">user_entity</string>
+    <string name="tab_text_1">Login</string>
+    <string name="tab_text_2">Sign Up</string>
+    <string-array name="states">
+        <item>Abia</item>
+        <item>Abuja</item>
+        <item>Kwara</item>
+        <item>Plateau</item>
+    </string-array>
+</resources>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".LoginActivity">
+
+
+
+   <FrameLayout
+       app:layout_behavior="@string/appbar_scrolling_view_behavior"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <LinearLayout
+           android:weightSum="2"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <View
+               android:theme="@style/AppTheme.AppBarOverlay"
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:layout_weight="1"
+               android:background="@color/colorPrimary"/>
+       </LinearLayout>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+           <LinearLayout
+               android:layout_marginTop="@dimen/fab_margin"
+               android:layout_marginBottom="@dimen/fab_margin"
+               android:padding="@dimen/fab_margin"
+               android:layout_width="match_parent"
+               android:orientation="vertical"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:textStyle="bold"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="@string/app_name"
+                   android:textColor="@color/white"
+                   android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textColor="@color/white"
+                   android:layout_marginTop="@dimen/medium"
+                   android:textStyle="bold"
+                   android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                   android:text="National Emergency Alert System"/>
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textColor="@color/white"
+                   android:layout_marginTop="@dimen/small"
+                   android:text="Please Register / Login to continue using this service"/>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_marginLeft="@dimen/medium"
+               android:layout_marginRight="@dimen/medium"
+               android:background="@drawable/login_inner_corner_bg"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+               <android.support.design.widget.TabLayout
+                   android:id="@+id/tabs"
+                   app:tabTextAppearance="@style/MyCustomTextAppearance"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+
+                   <android.support.design.widget.TabItem
+                       android:id="@+id/tabItem"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/tab_text_1" />
+
+                   <android.support.design.widget.TabItem
+                       android:id="@+id/tabItem2"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/tab_text_2" />
+
+
+
+               </android.support.design.widget.TabLayout>
+               <android.support.v4.view.ViewPager
+
+                   android:id="@+id/container"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   />
+           </LinearLayout>
+       </LinearLayout>
+   </FrameLayout>
+
+
+
+</android.support.design.widget.CoordinatorLayout>
