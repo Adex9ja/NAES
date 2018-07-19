@@ -51,7 +51,7 @@
                    android:layout_marginTop="@dimen/medium"
                    android:textStyle="bold"
                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                   android:text="National Emergency Alert System"/>
+                   android:text="@string/full_meaning"/>
                <TextView
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"

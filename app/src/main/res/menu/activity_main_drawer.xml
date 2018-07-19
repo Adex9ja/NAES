@@ -4,31 +4,33 @@
     tools:showIn="navigation_view">
 
    <item android:title="Alerts">
-       <menu>
-           <group android:checkableBehavior="single">
-               <item
-                   android:checked="true"
-                   android:id="@+id/general"
-                   android:icon="@drawable/forum"
-                   android:title="General Alert" />
-               <item
-                   android:id="@+id/location"
-                   android:icon="@drawable/location"
-                   android:title="My Location Alert" />
-               <item
-                   android:id="@+id/new_alert"
-                   android:title="New Alert"
-                   android:icon="@drawable/notification" />
+       <group android:checkableBehavior="single">
+           <item
+               android:checked="true"
+               android:id="@+id/general"
+               android:icon="@drawable/forum"
+               android:title="General Alert" />
+           <item
+               android:id="@+id/faculty"
+               android:icon="@drawable/location"
+               android:title="Faculty Alert" />
+           <item
+               android:id="@+id/department"
+               android:icon="@drawable/location"
+               android:title="Department Alert" />
+           <item
+               android:id="@+id/new_alert"
+               android:title="New Alert"
+               android:icon="@drawable/notification" />
 
-           </group>
-       </menu>
+       </group>
    </item>
     <item android:title="Others">
         <menu>
             <item
                 android:id="@+id/profile"
                 android:title="Profile"
-                android:icon="@drawable/gears"/>
+                android:icon="@drawable/user"/>
             <item
                 android:id="@+id/sign_out"
                 android:icon="@drawable/sign_out"

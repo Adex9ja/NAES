@@ -22,7 +22,8 @@ class Repository {
                 put(MyContentProvider.KEY_DATE_PUBLISHED, alert?.publishedDate)
                 put(MyContentProvider.KEY_REF, alert?.ref)
                 put(MyContentProvider.KEY_TITLE, alert?.title)
-                put(MyContentProvider.KEY_LOCATION, alert?.location)
+                put(MyContentProvider.KEY_FACULTY, alert?.faculty)
+                put(MyContentProvider.KEY_DEPARTMENT, alert?.department)
                 put(MyContentProvider.KEY_USER, Gson().toJson(alert?.user))
             }
             activity.contentResolver.insert(MyContentProvider.CONTENT_URI, values)
@@ -37,7 +38,8 @@ class Repository {
                 put(MyContentProvider.KEY_DATE_PUBLISHED, it.publishedDate)
                 put(MyContentProvider.KEY_REF, it.ref)
                 put(MyContentProvider.KEY_TITLE, it.title)
-                put(MyContentProvider.KEY_LOCATION, it.location)
+                put(MyContentProvider.KEY_FACULTY, it.faculty)
+                put(MyContentProvider.KEY_DEPARTMENT, it.department)
                 put(MyContentProvider.KEY_USER, Gson().toJson(it.user))
             } }
             activity.contentResolver.bulkInsert(MyContentProvider.CONTENT_URI,values?.toTypedArray())
@@ -48,7 +50,8 @@ class Repository {
             while (cursor?.moveToNext() == true){
                 val alert = AlertEntity().apply {
                     this.title = cursor.getString(cursor.getColumnIndexOrThrow(MyContentProvider.KEY_TITLE))
-                    this.location = cursor.getString(cursor.getColumnIndexOrThrow(MyContentProvider.KEY_LOCATION))
+                    this.faculty = cursor.getString(cursor.getColumnIndexOrThrow(MyContentProvider.KEY_FACULTY))
+                    this.department = cursor.getString(cursor.getColumnIndexOrThrow(MyContentProvider.KEY_DEPARTMENT))
                     this.detail = cursor.getString(cursor.getColumnIndexOrThrow(MyContentProvider.KEY_CONTENT))
                     this.publishedDate = cursor.getString(cursor.getColumnIndexOrThrow(MyContentProvider.KEY_DATE_PUBLISHED))
                     this.ref = cursor.getString(cursor.getColumnIndexOrThrow(MyContentProvider.KEY_REF))

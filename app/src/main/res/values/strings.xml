@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">NEAS</string>
-
+    <string name="app_name">CAS</string>
+    <string name="full_meaning">Campus Alert System</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -14,10 +14,53 @@
     <string name="user_entity">user_entity</string>
     <string name="tab_text_1">Login</string>
     <string name="tab_text_2">Sign Up</string>
-    <string-array name="states">
-        <item>Abia</item>
-        <item>Abuja</item>
-        <item>Kwara</item>
-        <item>Plateau</item>
+    <string-array name="faculty">
+        <item>School of Information and Communication Technology (SICT)</item>
+        <item>School of Environmental Technology (SET)</item>
+        <item>School of Agriculture and Agricultural Technology (SAAT)</item>
+        <item>School of Engineering and Engineering Technology (SEET)</item>
+        <item>School of Entrepreneurship and Management Technology (SEMT)</item>
+        <item>School of Life Sciences (SLS)</item>
+        <item>School of Physical Sciences (SPS)</item>
+        <item>School of Science and Technology Education (SSTE)</item>
+
+    </string-array>
+    <string-array name="sict">
+        <item>Computer Science (CPT)</item>
+        <item>Cyber Security Science (CSS)</item>
+        <item>Information and Media Technology (IMT)</item>
+        <item>Library and Information Technology (LIT)</item>
+    </string-array>
+    <string-array name="set">
+        <item>Architecture</item>
+        <item>Building Technology</item>
+        <item>Estate Management and Valuation</item>
+        <item>Quantity Surveying(Q.S)</item>
+        <item>Survey and Geo-informatics(SVG)</item>
+        <item>Urban and Regional Planning(URP) </item>
+    </string-array>
+    <string-array name="saat">
+        <item>Agricultural Economics and Extension Technology(AET)</item>
+        <item>Animal Production</item>
+        <item>Crop Production</item>
+        <item>Food Science and Technology</item>
+        <item>Soil Science and Land management</item>
+        <item>Water Resources, Aquaculture and Fisheries Technology</item>
+    </string-array>
+    <string-array name="seet">
+        <item>Agriculture and Bio-resources Engineering </item>
+        <item>Chemical Engineering </item>
+        <item>Civil Engineering </item>
+        <item>Computer Engineering </item>
+        <item>Electrical and Electronics </item>
+        <item>Mechanical Engineering </item>
+        <item>Mechatronics Engineering </item>
+        <item>Materials and Metallurgical Engineering </item>
+        <item>Telecommunication Engineering </item>
+    </string-array>
+    <string-array name="semt">
+        <item>Transport Management</item>
+        <item>Project Management</item>
+        <item>Entrepreneurship And Business Studies</item>
     </string-array>
 </resources>

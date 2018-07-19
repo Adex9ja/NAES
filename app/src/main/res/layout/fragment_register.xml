@@ -59,8 +59,12 @@
                android:maxLines="1"/>
 
        </android.support.design.widget.TextInputLayout>
+       <TextView
+           style="@style/my_text_view"
+           android:text="Faculty"/>
        <LinearLayout
-           android:layout_marginTop="@dimen/fab_margin"
+           android:layout_marginTop="@dimen/medium"
+           android:layout_marginBottom="@dimen/medium"
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
            <TextView
@@ -69,11 +73,30 @@
                android:layout_height="wrap_content"
                android:drawableLeft="@drawable/location"/>
            <android.support.v7.widget.AppCompatSpinner
-               android:id="@+id/spAddress"
+               android:id="@+id/spFaculty"
                android:layout_marginLeft="@dimen/fab_margin"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:entries="@array/states"></android.support.v7.widget.AppCompatSpinner>
+               android:entries="@array/faculty"></android.support.v7.widget.AppCompatSpinner>
+       </LinearLayout>
+       <TextView
+           style="@style/my_text_view"
+           android:text="Department"/>
+       <LinearLayout
+           android:layout_marginTop="@dimen/small"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:drawableTint="@color/colorPrimaryDark"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:drawableLeft="@drawable/location"/>
+           <android.support.v7.widget.AppCompatSpinner
+               android:id="@+id/spDepartment"
+               android:layout_marginLeft="@dimen/fab_margin"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:entries="@array/sict"></android.support.v7.widget.AppCompatSpinner>
        </LinearLayout>
 
        <CheckBox

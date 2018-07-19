@@ -4,7 +4,6 @@ import android.content.*
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
 
 class MyContentProvider : ContentProvider() {
@@ -16,7 +15,8 @@ class MyContentProvider : ContentProvider() {
         val KEY_CONTENT = "content"
         val KEY_STATE = "state"
         val KEY_USER = "user"
-        val KEY_LOCATION = "location"
+        val KEY_FACULTY = "faculty"
+        val KEY_DEPARTMENT = "department"
         val KEY_REF = "ref"
 
 
@@ -141,7 +141,8 @@ class MyContentProvider : ContentProvider() {
                     + KEY_DATE_PUBLISHED + " text  not null, "
                     + KEY_STATE + " text  , "
                     + KEY_USER + " text, "
-                    + KEY_LOCATION + " text, "
+                    + KEY_FACULTY + " text, "
+                    + KEY_DEPARTMENT + " text, "
                     + KEY_REF + " text, "
                     + " UNIQUE ( $KEY_REF ) ON CONFLICT REPLACE);")
 

@@ -1,88 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/fab_margin"
-    android:scrollbars="none"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".LoginActivity$LoginFragment">
-
-    <LinearLayout
-        android:orientation="vertical"
+    <ImageView
+        android:alpha="0.1"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_margin="@dimen/small"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Update Profile"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:fontFamily="@font/rancho_regular"/>
-        <EditText
-            android:layout_marginTop="@dimen/medium"
-            android:background="@android:drawable/edit_text"
-            android:editable="false"
-            android:enabled="false"
-            android:singleLine="true"
-            style="@style/my_text_view"
-            android:drawableLeft="@drawable/phone"
-            android:drawablePadding="@dimen/fab_margin"
-            android:drawableTint="@color/colorPrimary"
-            android:id="@+id/txtPhone"
-            android:hint="Phone Number"
-            android:inputType="phone"
-            android:maxLines="1"/>
-        <EditText
-            android:layout_marginTop="@dimen/medium"
-            android:background="@android:drawable/edit_text"
-            style="@style/my_text_view"
-            android:drawableLeft="@drawable/user"
-            android:drawablePadding="@dimen/fab_margin"
-            android:drawableTint="@color/colorPrimary"
-            android:id="@+id/txtFullName"
-            android:hint="Full Name"
-            android:singleLine="true"
-            android:maxLines="1"/>
-
-        <EditText
-            android:background="@android:drawable/edit_text"
-            android:layout_marginTop="@dimen/medium"
-            android:singleLine="true"
-            style="@style/my_text_view"
-            android:drawableLeft="@drawable/mail"
-            android:drawablePadding="@dimen/fab_margin"
-            android:drawableTint="@color/colorPrimary"
-            android:id="@+id/txtEmail"
-            android:hint="Email Address"
-            android:maxLines="1"/>
+        android:layout_height="match_parent"
+        android:scrollbars="none">
         <LinearLayout
-            android:layout_marginTop="@dimen/fab_margin"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_marginLeft="@dimen/small"
-                android:drawableTint="@color/colorPrimaryDark"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/location"/>
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spAddress"
-                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_margin="@dimen/small"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/states"></android.support.v7.widget.AppCompatSpinner>
+                android:text="Update Profile"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:fontFamily="@font/rancho_regular"/>
+            <EditText
+                android:layout_marginTop="@dimen/medium"
+                android:background="@android:drawable/edit_text"
+                android:editable="false"
+                android:enabled="false"
+                android:singleLine="true"
+                style="@style/my_text_view"
+                android:drawableLeft="@drawable/phone"
+                android:drawablePadding="@dimen/fab_margin"
+                android:drawableTint="@color/colorPrimary"
+                android:id="@+id/txtPhone"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                android:maxLines="1"/>
+            <EditText
+                android:layout_marginTop="@dimen/medium"
+                android:background="@android:drawable/edit_text"
+                style="@style/my_text_view"
+                android:drawableLeft="@drawable/user"
+                android:drawablePadding="@dimen/fab_margin"
+                android:drawableTint="@color/colorPrimary"
+                android:id="@+id/txtFullName"
+                android:hint="Full Name"
+                android:singleLine="true"
+                android:maxLines="1"/>
+
+            <EditText
+                android:background="@android:drawable/edit_text"
+                android:layout_marginTop="@dimen/medium"
+                android:singleLine="true"
+                style="@style/my_text_view"
+                android:drawableLeft="@drawable/mail"
+                android:drawablePadding="@dimen/fab_margin"
+                android:drawableTint="@color/colorPrimary"
+                android:id="@+id/txtEmail"
+                android:hint="Email Address"
+                android:maxLines="1"/>
+            <TextView
+                style="@style/my_text_view"
+                android:text="Faculty"/>
+            <LinearLayout
+                android:layout_marginTop="@dimen/medium"
+                android:layout_marginBottom="@dimen/medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/location"/>
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spFaculty"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/faculty"></android.support.v7.widget.AppCompatSpinner>
+            </LinearLayout>
+            <TextView
+                style="@style/my_text_view"
+                android:text="Department"/>
+            <LinearLayout
+                android:layout_marginTop="@dimen/small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/location"/>
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spDepartment"
+                    android:layout_marginLeft="@dimen/fab_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/sict"></android.support.v7.widget.AppCompatSpinner>
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/btnContinue"
+                style="@style/my_button"
+                android:text="Update Profile"/>
         </LinearLayout>
+    </ScrollView>
 
 
-        <Button
-            android:id="@+id/btnContinue"
-            style="@style/my_button"
-            android:text="Update Profile"/>
-    </LinearLayout>
-
-
-</ScrollView>
+</FrameLayout>

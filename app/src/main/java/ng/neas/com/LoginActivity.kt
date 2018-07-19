@@ -149,7 +149,21 @@ class LoginActivity : AppCompatActivity() {
             helper?.queryDB(getString(R.string.user_entity),"phoneNo", phone, this)
         }
     }
-    class RegisterFragment : Fragment(), OnCompleteListener<Void> {
+    class RegisterFragment : Fragment(), OnCompleteListener<Void>, AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+
+        }
+
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            when(position){
+                0 -> spDepartment?.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.sict))
+                1 -> spDepartment?.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.set))
+                2 -> spDepartment?.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.saat))
+                3 -> spDepartment?.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.seet))
+                4 -> spDepartment?.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.semt))
+            }
+        }
+
         override fun onComplete(task: Task<Void>) {
             if(task.isSuccessful)
                 registrationSuccessful()
@@ -170,7 +184,8 @@ class LoginActivity : AppCompatActivity() {
         private var txtFullName : EditText? = null
         private var txtPhone : EditText? = null
         private var txtEmail : EditText? = null
-        private var spAddress : Spinner? = null
+        private var spFaculty : Spinner? = null
+        private var spDepartment : Spinner? = null
         private var chAgree : CheckBox? = null
         private var btnContinue : Button? = null
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -185,10 +200,12 @@ class LoginActivity : AppCompatActivity() {
             txtFullName = rootView.findViewById(R.id.txtFullName)
             txtPhone = rootView.findViewById(R.id.txtPhone)
             txtEmail = rootView.findViewById(R.id.txtEmail)
-            spAddress = rootView.findViewById(R.id.spAddress)
+            spFaculty = rootView.findViewById(R.id.spFaculty)
+            spDepartment = rootView.findViewById(R.id.spDepartment)
             chAgree = rootView.findViewById(R.id.chAgree)
             btnContinue = rootView.findViewById(R.id.btnContinue)
             btnContinue?.setOnClickListener { attemptToRegister() }
+            spFaculty?.onItemSelectedListener = this
             return rootView
         }
 
@@ -196,7 +213,8 @@ class LoginActivity : AppCompatActivity() {
             val fullname = txtFullName?.text.toString()
             val phone = txtPhone?.text.toString()
             val email = txtEmail?.text.toString()
-            val address = spAddress?.selectedItem.toString()
+            val faculty = spFaculty?.selectedItem.toString()
+            val department = spDepartment?.selectedItem.toString()
             val agree = chAgree?.isChecked
 
             if(fullname.isNullOrEmpty() || phone.isNullOrEmpty() || email.isNullOrEmpty() || agree == false){
@@ -204,7 +222,7 @@ class LoginActivity : AppCompatActivity() {
                 return
             }
 
-            val user = UserEntity().apply { this.email = email; this.fullName = fullname; this.location = address; this.phoneNo = phone }
+            val user = UserEntity().apply { this.email = email; this.fullName = fullname; this.faculty = faculty; this.phoneNo = phone; this.department = department }
             handler?.sendEmptyMessage(0)
             helper?.submitToDB(getString(R.string.user_entity), user.phoneNo, user, this)
 

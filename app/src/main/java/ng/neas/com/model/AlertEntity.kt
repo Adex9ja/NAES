@@ -5,6 +5,7 @@ class AlertEntity {
     var title: String? = null
     var detail: String? = null
     var publishedDate: String? = null
-    var location: String? = null
+    var faculty: String? = null
+    var department: String? = null
     var user: UserEntity? = null
 }
