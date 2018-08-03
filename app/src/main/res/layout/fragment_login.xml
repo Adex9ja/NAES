@@ -24,11 +24,11 @@
            android:layout_height="wrap_content">
            <EditText
                style="@style/my_text_view"
-               android:drawableLeft="@drawable/mail"
+               android:drawableLeft="@drawable/user"
                android:drawablePadding="@dimen/fab_margin"
                android:drawableTint="@color/colorPrimary"
-               android:id="@+id/txtEmail"
-               android:hint="Enter Email"
+               android:id="@+id/txtStudentId"
+               android:hint="Enter Student ID"
                android:inputType="textEmailAddress"
                android:maxLines="1"/>
 

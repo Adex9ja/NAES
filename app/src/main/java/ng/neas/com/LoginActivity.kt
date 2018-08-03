@@ -87,7 +87,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun onDataChange(dataSnapshot:   DataSnapshot) {
-            val phone = txtPhone?.text.toString()
+            val phone = txtStudentId?.text.toString()
             if(dataSnapshot.hasChild(phone)){
                 val user = dataSnapshot.child(phone).getValue(UserEntity::class.java)
                 checkUser(user)
@@ -99,8 +99,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         private fun checkUser(user: UserEntity?) {
-            val email = txtEmail?.text.toString()
-            if(user?.email  != email)
+            val phone = txtPhone?.text.toString()
+            if(user?.phoneNo  != phone)
                 handler?.obtainMessage(1, "Invalid Login!")?.sendToTarget()
             else{
                 handler?.sendEmptyMessage(1)
@@ -111,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         private fun clearFields() {
-            txtEmail?.setText("")
+            txtStudentId?.setText("")
             txtPhone?.setText("")
         }
 
@@ -119,7 +119,7 @@ class LoginActivity : AppCompatActivity() {
         private var handler: MyHandler? = null
         private var pref: MySharedPreference? = null
         private var txtPhone : EditText? = null
-        private var txtEmail : EditText? = null
+        private var txtStudentId : EditText? = null
         private var btnContinue : Button? = null
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -131,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
                                   savedInstanceState: Bundle?): View? {
             val rootView = inflater.inflate(R.layout.fragment_login, container, false)
             txtPhone = rootView.findViewById(R.id.txtPhone)
-            txtEmail = rootView.findViewById(R.id.txtEmail)
+            txtStudentId = rootView.findViewById(R.id.txtStudentId)
             btnContinue = rootView.findViewById(R.id.btnContinue)
             btnContinue?.setOnClickListener { attemptLogin() }
             return rootView
@@ -139,23 +139,54 @@ class LoginActivity : AppCompatActivity() {
 
         private fun attemptLogin() {
             val phone = txtPhone?.text.toString()
-            val email = txtEmail?.text.toString()
+            val studId = txtStudentId?.text.toString()
 
-            if(phone.isNullOrEmpty() || email.isNullOrEmpty()){
+            if(phone.isNullOrEmpty() || studId.isNullOrEmpty()){
                 Toast.makeText(context, getString(R.string.required_field), Toast.LENGTH_SHORT).show()
                 return
             }
             handler?.sendEmptyMessage(0)
-            helper?.queryDB(getString(R.string.user_entity),"phoneNo", phone, this)
+            helper?.queryDB(getString(R.string.user_entity),"studentId", studId, this)
         }
     }
-    class RegisterFragment : Fragment(), OnCompleteListener<Void>, AdapterView.OnItemSelectedListener {
+    class RegisterFragment : Fragment(), OnCompleteListener<Void>, AdapterView.OnItemSelectedListener, ValueEventListener {
+        override fun onCancelled(p0: DatabaseError) {
+
+        }
+
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            val studId = txtStudentId?.text.toString()
+            if (dataSnapshot.hasChild(studId)) {
+                handler?.obtainMessage(1, "Student ID already exist!")?.sendToTarget()
+            } else
+                attemptToRegister()
+        }
+
+        private fun attemptToRegister() {
+            val fullname = txtFullName?.text.toString()
+            val phone = txtPhone?.text.toString()
+            val studId = txtStudentId?.text.toString()
+            val matric = txtMatricNo?.text.toString()
+            val faculty = spFaculty?.selectedItem.toString()
+            val department = spDepartment?.selectedItem.toString()
+            val agree = chAgree?.isChecked
+
+            if (fullname.isNullOrEmpty() || phone.isNullOrEmpty() || studId.isNullOrEmpty() || agree == false || matric.isNullOrEmpty()) {
+                Toast.makeText(context, getString(R.string.required_field), Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            val user = UserEntity().apply { this.studentId = studId; this.fullName = fullname; this.faculty = faculty; this.phoneNo = phone; this.department = department; this.matricNo = matric }
+            helper?.submitToDB(getString(R.string.user_entity), user.studentId, user, this)
+
+        }
+
         override fun onNothingSelected(parent: AdapterView<*>?) {
 
         }
 
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            when(position){
+            when (position) {
                 0 -> spDepartment?.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.sict))
                 1 -> spDepartment?.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.set))
                 2 -> spDepartment?.adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.saat))
@@ -165,15 +196,16 @@ class LoginActivity : AppCompatActivity() {
         }
 
         override fun onComplete(task: Task<Void>) {
-            if(task.isSuccessful)
+            if (task.isSuccessful)
                 registrationSuccessful()
             else
                 handler?.obtainMessage(1, task.exception?.message)?.sendToTarget()
         }
 
         private fun registrationSuccessful() {
-            handler?.obtainMessage(3, 0,0, "Registration Successful! \nLogin to Continue" )?.sendToTarget()
-            txtEmail?.setText("")
+            handler?.obtainMessage(3, 0, 0, "Registration Successful! \nLogin to Continue")?.sendToTarget()
+            txtStudentId?.setText("")
+            txtMatricNo?.setText("")
             txtFullName?.setText("")
             txtPhone?.setText("")
         }
@@ -181,56 +213,49 @@ class LoginActivity : AppCompatActivity() {
         private var helper: MyFireBaseHelper? = null
         private var handler: MyHandler? = null
         private var pref: MySharedPreference? = null
-        private var txtFullName : EditText? = null
-        private var txtPhone : EditText? = null
-        private var txtEmail : EditText? = null
-        private var spFaculty : Spinner? = null
-        private var spDepartment : Spinner? = null
-        private var chAgree : CheckBox? = null
-        private var btnContinue : Button? = null
+        private var txtFullName: EditText? = null
+        private var txtStudentId: EditText? = null
+        private var txtMatricNo: EditText? = null
+        private var txtPhone: EditText? = null
+        private var spFaculty: Spinner? = null
+        private var spDepartment: Spinner? = null
+        private var chAgree: CheckBox? = null
+        private var btnContinue: Button? = null
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             handler = MyHandler(context, false)
             pref = MySharedPreference(context)
             helper = MyFireBaseHelper(context)
         }
+
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
             val rootView = inflater.inflate(R.layout.fragment_register, container, false)
             txtFullName = rootView.findViewById(R.id.txtFullName)
             txtPhone = rootView.findViewById(R.id.txtPhone)
-            txtEmail = rootView.findViewById(R.id.txtEmail)
+            txtStudentId = rootView.findViewById(R.id.txtStudentId)
+            txtMatricNo = rootView.findViewById(R.id.txtMatricNo)
             spFaculty = rootView.findViewById(R.id.spFaculty)
             spDepartment = rootView.findViewById(R.id.spDepartment)
             chAgree = rootView.findViewById(R.id.chAgree)
             btnContinue = rootView.findViewById(R.id.btnContinue)
-            btnContinue?.setOnClickListener { attemptToRegister() }
+            btnContinue?.setOnClickListener { checkIfUserExist() }
             spFaculty?.onItemSelectedListener = this
             return rootView
         }
 
-        private fun attemptToRegister() {
-            val fullname = txtFullName?.text.toString()
-            val phone = txtPhone?.text.toString()
-            val email = txtEmail?.text.toString()
-            val faculty = spFaculty?.selectedItem.toString()
-            val department = spDepartment?.selectedItem.toString()
-            val agree = chAgree?.isChecked
-
-            if(fullname.isNullOrEmpty() || phone.isNullOrEmpty() || email.isNullOrEmpty() || agree == false){
-                Toast.makeText(context, getString(R.string.required_field), Toast.LENGTH_SHORT).show()
-                return
-            }
-
-            val user = UserEntity().apply { this.email = email; this.fullName = fullname; this.faculty = faculty; this.phoneNo = phone; this.department = department }
+        private fun checkIfUserExist() {
+            val studId = txtStudentId?.text.toString()
             handler?.sendEmptyMessage(0)
-            helper?.submitToDB(getString(R.string.user_entity), user.phoneNo, user, this)
-
+            helper?.queryDB(getString(R.string.user_entity), "studentId", studId, this)
         }
 
 
-
     }
 
-    }
+
+
+
+
+}
 

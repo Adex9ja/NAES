@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="@dimen/small"
     android:background="@drawable/app_bg"
+    android:id="@+id/container"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,6 +16,16 @@
         android:src="@drawable/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/fab_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WELCOME TO CANOS \nCAMPUS NOTIFICATION SYSTEM"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textAlignment="center"
+        android:padding="@dimen/fab_margin"/>
     <android.support.v7.widget.RecyclerView
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         android:id="@+id/recyclerView"

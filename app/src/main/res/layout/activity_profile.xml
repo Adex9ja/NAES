@@ -30,10 +30,22 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:fontFamily="@font/rancho_regular"/>
             <EditText
-                android:layout_marginTop="@dimen/medium"
                 android:background="@android:drawable/edit_text"
+                android:layout_marginTop="@dimen/medium"
+                android:singleLine="true"
                 android:editable="false"
                 android:enabled="false"
+                style="@style/my_text_view"
+                android:drawableLeft="@drawable/user"
+                android:drawablePadding="@dimen/fab_margin"
+                android:drawableTint="@color/colorPrimary"
+                android:id="@+id/txtStudentId"
+                android:hint="Student ID"
+                android:maxLines="1"/>
+            <EditText
+                android:layout_marginTop="@dimen/medium"
+                android:background="@android:drawable/edit_text"
+
                 android:singleLine="true"
                 style="@style/my_text_view"
                 android:drawableLeft="@drawable/phone"
@@ -47,7 +59,7 @@
                 android:layout_marginTop="@dimen/medium"
                 android:background="@android:drawable/edit_text"
                 style="@style/my_text_view"
-                android:drawableLeft="@drawable/user"
+                android:drawableLeft="@drawable/fullname"
                 android:drawablePadding="@dimen/fab_margin"
                 android:drawableTint="@color/colorPrimary"
                 android:id="@+id/txtFullName"
@@ -55,16 +67,17 @@
                 android:singleLine="true"
                 android:maxLines="1"/>
 
+
             <EditText
                 android:background="@android:drawable/edit_text"
                 android:layout_marginTop="@dimen/medium"
                 android:singleLine="true"
                 style="@style/my_text_view"
-                android:drawableLeft="@drawable/mail"
+                android:drawableLeft="@drawable/matric"
                 android:drawablePadding="@dimen/fab_margin"
                 android:drawableTint="@color/colorPrimary"
-                android:id="@+id/txtEmail"
-                android:hint="Email Address"
+                android:id="@+id/txtMatricNo"
+                android:hint="Matric No"
                 android:maxLines="1"/>
             <TextView
                 style="@style/my_text_view"
@@ -97,7 +110,7 @@
                     android:drawableTint="@color/colorPrimaryDark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/location"/>
+                    android:drawableLeft="@drawable/department"/>
                 <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/spDepartment"
                     android:layout_marginLeft="@dimen/fab_margin"

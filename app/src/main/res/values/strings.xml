@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">CAS</string>
-    <string name="full_meaning">Campus Alert System</string>
+    <string name="app_name">CANOS</string>
+    <string name="full_meaning">CAMPUS NOTIFICATION SYSTEM</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="about">CANOS is a campus notification system. This system is designed to keep students updated digitally with detailed information on events happening on campus. If you have an important information to a target, just inform the admin, once it’s detailed and verified, it will be broadcast</string>
+    <string name="address_path">https://fcm.googleapis.com/fcm/send</string>
+    <string name="server_key">AAAA1SboZmQ:APA91bFlbTfV9Syk5ZrvIjY3K7dRTyV-0UARqMpTozsD9Y9A0C_jMpYwbqBxzJFyoJ_0iZzbRYHEwnspcpimsOp73COvogUH9iEd59hW5haoUe_-vYM2MZ8OJDjL6ELhw8ELOSvr1ehH</string>
     <string name="loggedInUser">loggedInUser</string>
+    <string name="jsonRequest">data</string>
     <string name="general">General</string>
-    <string name="title_activity_login_acticity">LoginActicity</string>
+    <string name="title_activity_login_acticity">LoginActivity</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="required_field">All fields are required</string>

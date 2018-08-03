@@ -4,8 +4,10 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.view.Menu
@@ -29,9 +31,12 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import ng.neas.com.data.MyFireBaseHelper
 import ng.neas.com.data.MySharedPreference
+import ng.neas.com.fragments.AlertListFragment
+import ng.neas.com.fragments.UserListFragment
 import ng.neas.com.model.AlertEntity
 import ng.neas.com.model.UserEntity
 import ng.neas.com.utils.Repository
+import ng.neas.com.utils.UserRole
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ResponseListener, OnCompleteListener<Void>, ValueEventListener, AdapterView.OnItemSelectedListener {
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -43,12 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         handler?.sendEmptyMessage(1)
     }
     override fun onDataChange(dataSnapshot: DataSnapshot) {
-        rawData = ArrayList()
-        for ( data in dataSnapshot.children){
-            rawData?.add(data.getValue(AlertEntity::class.java)!!)
-        }
-        rawData?.filter {  it.faculty == getString(R.string.general) }?.let { adapter?.swapList(ArrayList(it)) }
-        Repository.submitTODB(this, rawData)
+
     }
     override fun onComplete(task: Task<Void>) {
         dialog?.dismiss()
@@ -64,12 +64,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
     private var dialog: Dialog? = null
-    private var rawData : ArrayList<AlertEntity>? = ArrayList()
     private var handler: MyHandler? = null
     private var helper: MyFireBaseHelper? = null
     private var loggedInUser: UserEntity? = null
     private var pref: MySharedPreference? = null
-    private var adapter: AlertEntryAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -82,15 +80,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         pref = MySharedPreference(this)
         helper = MyFireBaseHelper(this)
         handler = MyHandler(this, false)
-        adapter = AlertEntryAdapter(this)
         loggedInUser = Gson().fromJson(pref?.loggedInUser, UserEntity::class.java)
-        recyclerView.adapter = adapter
-        recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
-        rawData = Repository.fetchLocal(this)
-        helper?.fetchDB(getString(R.string.alert_entity), this)
         username.text = loggedInUser?.fullName
-        rawData?.filter { it.faculty == getString(R.string.general) }?.let { adapter?.swapList(ArrayList(it)) }
+        nav_view.menu.findItem(R.id.adminMenu).isVisible = loggedInUser?.userRole == UserRole.ADMIN
+        if(intent.hasExtra(getString(R.string.data)))
+            showAlert(intent.getStringExtra(getString(R.string.data)), intent.getStringExtra(getString(R.string.full_meaning)))
+
     }
+
+    private fun showAlert(title: String?, message: String?) {
+        AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message).setPositiveButton("Okay"){dialog, _ -> dialog.dismiss() }
+                .show()
+    }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -98,40 +102,38 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             UIKits.promptLogout(this, this)
         }
     }
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        when (item.itemId) {
-            R.id.sign_out -> UIKits.promptLogout(this, this)
-            else -> return super.onOptionsItemSelected(item)
-        }
-        return true
-    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         drawer_layout.closeDrawer(GravityCompat.START)
         return when (item.itemId) {
             R.id.sign_out -> {UIKits.promptLogout(this, this);  false}
-            R.id.new_alert -> {addNewAlert();  false}
+            R.id.about -> showAbout()
+            R.id.new_alert -> addNewAlert()
             R.id.profile -> {startActivity(Intent(this, ProfileActivity::class.java));  false}
-            R.id.faculty -> { rawData?.filter { it.faculty == loggedInUser?.faculty }?.let { adapter?.swapList(ArrayList(it)) };  true }
-            R.id.department -> { rawData?.filter { it.department == loggedInUser?.department }?.let { adapter?.swapList(ArrayList(it)) };  true }
-            R.id.general -> { rawData?.filter { it.faculty == getString(R.string.general) }?.let { adapter?.swapList(ArrayList(it)) };  true }
+            R.id.faculty, R.id.department, R.id.general, R.id.unapproved  -> swapFragment(AlertListFragment(), item.itemId, item.title)
+            R.id.users  ->  swapFragment(UserListFragment(), item.itemId, item.title)
             else ->  false
         }
     }
-
-
-
+    private fun swapFragment(fragment : Fragment, itemId: Int, title : CharSequence) : Boolean{
+        supportActionBar?.title = title
+        val bundle = Bundle().apply { putInt(getString(R.string.data), itemId); putSerializable(getString(R.string.loggedInUser), loggedInUser) }
+        fragment.arguments = bundle
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commitAllowingStateLoss()
+        return true
+    }
+    private fun showAbout(): Boolean {
+        AlertDialog.Builder(this)
+                .setTitle("About App")
+                .setMessage(getString(R.string.about))
+                .setPositiveButton("Okay"){dialog, _ -> dialog.dismiss()  }
+                .show()
+        return false
+    }
     private var spDepartment: Spinner? = null
     private var spFaculty: Spinner? = null
-    private fun addNewAlert() {
+    private fun addNewAlert(): Boolean {
         dialog = Dialog(this)
         dialog?.setContentView(R.layout.add_alert_layout)
         val txtTitle = dialog?.findViewById<EditText>(R.id.txtTitle)
@@ -145,6 +147,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         spFaculty?.onItemSelectedListener = this
         btnContinue?.setOnClickListener { attemptSubmit(txtTitle, txtContent, chGeneral) }
         dialog?.show()
+        return false
     }
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when(position){

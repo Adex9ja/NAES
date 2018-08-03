@@ -55,7 +55,8 @@ class ProfileActivity : AppCompatActivity(), OnCompleteListener<Void>, AdapterVi
 
     private fun fillProfile() {
         txtFullName.setText(loggedInUser?.fullName)
-        txtEmail.setText(loggedInUser?.email)
+        txtStudentId.setText(loggedInUser?.studentId)
+        txtMatricNo.setText(loggedInUser?.matricNo)
         txtPhone.setText(loggedInUser?.phoneNo)
         resources?.getStringArray(R.array.faculty)?.indexOf(loggedInUser?.faculty)?.let { spFaculty.setSelection(it) }
         when(spFaculty.selectedItemPosition){
@@ -69,18 +70,19 @@ class ProfileActivity : AppCompatActivity(), OnCompleteListener<Void>, AdapterVi
 
     private fun attemptSubmit() {
         val name = txtFullName.text.toString()
-        val email = txtEmail.text.toString()
+        val studId = txtStudentId.text.toString()
+        val matric = txtMatricNo.text.toString()
         val faculty = spFaculty.selectedItem.toString()
         val department = spDepartment.selectedItem.toString()
 
-        if(name.isNullOrEmpty() || email.isNullOrEmpty()){
+        if(name.isNullOrEmpty() || matric.isNullOrEmpty() || studId.isNullOrEmpty()){
             Toast.makeText(this, getString(R.string.required_field), Toast.LENGTH_SHORT).show()
             return
         }
 
-        loggedInUser?.fullName = name; loggedInUser?.faculty = faculty; loggedInUser?.email = email; loggedInUser?.department = department
+        loggedInUser?.fullName = name; loggedInUser?.faculty = faculty; loggedInUser?.studentId = studId; loggedInUser?.department = department; loggedInUser?.matricNo = matric
         handler?.sendEmptyMessage(0)
-        helper?.submitToDB(getString(R.string.user_entity), loggedInUser?.phoneNo, loggedInUser, this)
+        helper?.submitToDB(getString(R.string.user_entity), loggedInUser?.studentId, loggedInUser, this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

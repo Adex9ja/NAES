@@ -1,6 +1,7 @@
 package ng.neas.com.utils
 
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.ContentValues
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.gson.Gson
@@ -32,21 +33,24 @@ class Repository {
         fun getDate(): String? {
             return sdf.format(Date())
         }
-        fun submitTODB(activity: Activity, rawData: ArrayList<AlertEntity>?) {
-            val values = rawData?.map { it -> ContentValues().apply {
-                put(MyContentProvider.KEY_CONTENT, it.detail)
-                put(MyContentProvider.KEY_DATE_PUBLISHED, it.publishedDate)
-                put(MyContentProvider.KEY_REF, it.ref)
-                put(MyContentProvider.KEY_TITLE, it.title)
-                put(MyContentProvider.KEY_FACULTY, it.faculty)
-                put(MyContentProvider.KEY_DEPARTMENT, it.department)
-                put(MyContentProvider.KEY_USER, Gson().toJson(it.user))
-            } }
-            activity.contentResolver.bulkInsert(MyContentProvider.CONTENT_URI,values?.toTypedArray())
+        fun submitTODB(contentResolver: ContentResolver, rawData: ArrayList<AlertEntity>?) {
+            try {
+                contentResolver.delete(MyContentProvider.CONTENT_URI, null, null)
+                val values = rawData?.map { it -> ContentValues().apply {
+                    put(MyContentProvider.KEY_CONTENT, it.detail)
+                    put(MyContentProvider.KEY_DATE_PUBLISHED, it.publishedDate)
+                    put(MyContentProvider.KEY_REF, it.ref)
+                    put(MyContentProvider.KEY_TITLE, it.title)
+                    put(MyContentProvider.KEY_FACULTY, it.faculty)
+                    put(MyContentProvider.KEY_DEPARTMENT, it.department)
+                    put(MyContentProvider.KEY_USER, Gson().toJson(it.user))
+                } }
+                contentResolver.bulkInsert(MyContentProvider.CONTENT_URI,values?.toTypedArray())
+            }catch (_: Exception){}
         }
-        fun fetchLocal(activity: Activity): ArrayList<AlertEntity>? {
+        fun fetchLocal(contentResolver: ContentResolver): ArrayList<AlertEntity>? {
             var data = ArrayList<AlertEntity>()
-            val cursor = activity.contentResolver.query(MyContentProvider.CONTENT_URI, null, null, null, null)
+            val cursor = contentResolver.query(MyContentProvider.CONTENT_URI, null, null, null, null)
             while (cursor?.moveToNext() == true){
                 val alert = AlertEntity().apply {
                     this.title = cursor.getString(cursor.getColumnIndexOrThrow(MyContentProvider.KEY_TITLE))

@@ -6,7 +6,6 @@
    <item android:title="Alerts">
        <group android:checkableBehavior="single">
            <item
-               android:checked="true"
                android:id="@+id/general"
                android:icon="@drawable/forum"
                android:title="General Alert" />
@@ -16,7 +15,7 @@
                android:title="Faculty Alert" />
            <item
                android:id="@+id/department"
-               android:icon="@drawable/location"
+               android:icon="@drawable/department"
                android:title="Department Alert" />
            <item
                android:id="@+id/new_alert"
@@ -25,12 +24,30 @@
 
        </group>
    </item>
+
+    <item android:title="Admin Section" android:visible="false" android:id="@+id/adminMenu">
+        <menu>
+            <item
+                android:id="@+id/users"
+                android:title="Registered Users"
+                android:icon="@drawable/registered"/>
+            <item
+                android:id="@+id/unapproved"
+                android:icon="@drawable/pending"
+                android:title="Pending Notification(s)" />
+        </menu>
+    </item>
+
     <item android:title="Others">
         <menu>
             <item
                 android:id="@+id/profile"
                 android:title="Profile"
                 android:icon="@drawable/user"/>
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/about"
+                android:title="About" />
             <item
                 android:id="@+id/sign_out"
                 android:icon="@drawable/sign_out"

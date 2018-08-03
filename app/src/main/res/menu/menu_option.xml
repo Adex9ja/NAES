@@ -8,8 +8,21 @@
         android:title="Share"
         app:showAsAction="always" />
     <item
-        android:id="@+id/view"
+        android:visible="false"
+        android:id="@+id/approve"
         android:orderInCategory="100"
-        android:title="View"
+        android:title="Change Status"
+        app:showAsAction="always" />
+    <item
+        android:visible="false"
+        android:id="@+id/delete"
+        android:orderInCategory="100"
+        android:title="Delete"
+        app:showAsAction="always" />
+    <item
+        android:visible="false"
+        android:id="@+id/update"
+        android:orderInCategory="100"
+        android:title="Change Privilege"
         app:showAsAction="always" />
 </menu>

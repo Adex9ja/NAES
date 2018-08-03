@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             tools:text="TRIBUNAL, LAGOS"/>
         <TextView
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:id="@+id/txtSublist3"
             android:singleLine="true"
             android:textStyle="italic"

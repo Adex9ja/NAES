@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/fab_margin"
+    android:paddingLeft="@dimen/fab_margin"
+    android:paddingRight="@dimen/fab_margin"
+    android:layout_marginTop="@dimen/small"
+    android:layout_marginBottom="@dimen/medium"
     android:scrollbars="none"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
@@ -19,11 +22,41 @@
            android:layout_height="wrap_content">
            <EditText
                style="@style/my_text_view"
-               android:drawableLeft="@drawable/user"
+               android:drawableLeft="@drawable/fullname"
                android:drawablePadding="@dimen/fab_margin"
                android:drawableTint="@color/colorPrimary"
                android:id="@+id/txtFullName"
-               android:hint="Full Name"
+               android:hint="Full Name "
+               android:singleLine="true"
+               android:maxLines="1"/>
+
+       </android.support.design.widget.TextInputLayout>
+       <android.support.design.widget.TextInputLayout
+           android:layout_marginTop="@dimen/medium"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               style="@style/my_text_view"
+               android:drawableLeft="@drawable/user"
+               android:drawablePadding="@dimen/fab_margin"
+               android:drawableTint="@color/colorPrimary"
+               android:id="@+id/txtStudentId"
+               android:hint="Student ID"
+               android:singleLine="true"
+               android:maxLines="1"/>
+
+       </android.support.design.widget.TextInputLayout>
+       <android.support.design.widget.TextInputLayout
+           android:layout_marginTop="@dimen/medium"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               style="@style/my_text_view"
+               android:drawableLeft="@drawable/matric"
+               android:drawablePadding="@dimen/fab_margin"
+               android:drawableTint="@color/colorPrimary"
+                   android:id="@+id/txtMatricNo"
+               android:hint="Matric Number"
                android:singleLine="true"
                android:maxLines="1"/>
 
@@ -44,21 +77,7 @@
                android:maxLines="1"/>
 
        </android.support.design.widget.TextInputLayout>
-       <android.support.design.widget.TextInputLayout
-           android:layout_marginTop="@dimen/medium"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <EditText
-               android:singleLine="true"
-               style="@style/my_text_view"
-               android:drawableLeft="@drawable/mail"
-               android:drawablePadding="@dimen/fab_margin"
-               android:drawableTint="@color/colorPrimary"
-               android:id="@+id/txtEmail"
-               android:hint="Email Address"
-               android:maxLines="1"/>
 
-       </android.support.design.widget.TextInputLayout>
        <TextView
            style="@style/my_text_view"
            android:text="Faculty"/>
@@ -90,7 +109,7 @@
                android:drawableTint="@color/colorPrimaryDark"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:drawableLeft="@drawable/location"/>
+               android:drawableLeft="@drawable/department"/>
            <android.support.v7.widget.AppCompatSpinner
                android:id="@+id/spDepartment"
                android:layout_marginLeft="@dimen/fab_margin"

@@ -96,7 +96,7 @@
                        android:drawableTint="@color/colorPrimaryDark"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:drawableLeft="@drawable/location"/>
+                       android:drawableLeft="@drawable/department"/>
                    <android.support.v7.widget.AppCompatSpinner
                        android:id="@+id/spDepartment"
                        android:layout_marginLeft="@dimen/fab_margin"

@@ -2,10 +2,13 @@ package ng.neas.com.data
 
 import android.app.Activity
 import android.content.Context
+import com.elkanahtech.widerpay.myutils.listeners.MyCallBackListener
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import ng.neas.com.R
+import ng.neas.com.model.AlertEntity
+import ng.neas.com.utils.NetworkUtils
 
 
 class MyFireBaseHelper(activity: Context?)  {
@@ -21,7 +24,5 @@ class MyFireBaseHelper(activity: Context?)  {
     fun fetchDB(table_title: String, listener: ValueEventListener) {
         database.child(table_title).addValueEventListener(listener)
     }
-    fun removeListener(table_title: String, listener: ValueEventListener) {
-        database.child(table_title).removeEventListener(listener)
-    }
+
 }
