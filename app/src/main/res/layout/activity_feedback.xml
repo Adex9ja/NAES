@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/fab_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".fragments.LoginFragment">
+    <ImageView
+        android:alpha="0.1"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            style="@style/my_text_view"
+            android:text="Full Name"/>
+        <EditText
+            android:id="@+id/txtFullname"
+            style="@style/my_edit_text" />
+        <TextView
+            style="@style/my_text_view"
+            android:text="Email"/>
+        <EditText
+            android:id="@+id/txtEmail"
+            android:hint=""
+            style="@style/my_edit_text" />
+        <TextView
+            style="@style/my_text_view"
+            android:text="FeedBack"/>
+        <EditText
+            android:id="@+id/txtFeedBack"
+            style="@style/my_edit_text"
+            android:singleLine="false"
+            android:minLines="5"
+            android:maxLines="5"
+            android:gravity="start"/>
+        <Button
+            android:id="@+id/btnContinue"
+            style="@style/my_button"
+            android:text="Submit FeedBack"/>
+    </LinearLayout>
+</FrameLayout>

@@ -28,6 +28,7 @@
             android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             tools:text="APPEAL NO: TAT/XKD"/>
         <TextView
             android:id="@+id/txtSublist2"

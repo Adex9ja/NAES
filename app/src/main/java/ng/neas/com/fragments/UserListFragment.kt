@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.LinearLayout
 import app.qtax.com.adapter.AlertEntryAdapter
 import app.qtax.com.adapter.UserListAdapter
@@ -24,7 +27,21 @@ import ng.neas.com.model.UserEntity
 import ng.neas.com.utils.ApprovalStatus
 
 
-class UserListFragment : Fragment(), ValueEventListener {
+class UserListFragment : Fragment(), ValueEventListener, TextWatcher {
+    override fun afterTextChanged(s: Editable?) {
+    }
+
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+    }
+
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        userList?.filter {
+                    it.fullName?.contains(s!!, true) == true ||
+                    it.studentId?.contains(s!!, true) == true ||
+                    it.matricNo?.contains(s!!, true) == true ||
+                    it.phoneNo?.contains(s!!, true) == true }?.let { adapter?.swapList(ArrayList(it)) }
+    }
+
     override fun onCancelled(p0: DatabaseError) {
         handler?.sendEmptyMessage(1)
     }
@@ -32,13 +49,12 @@ class UserListFragment : Fragment(), ValueEventListener {
     override fun onDataChange(dataSnapshot: DataSnapshot) {
         handler?.sendEmptyMessage(1)
         userList = ArrayList()
-        for ( data in dataSnapshot.children){
-            userList?.add(data.getValue(UserEntity::class.java)!!)
-        }
+        dataSnapshot.children.forEach {  userList?.add(it.getValue(UserEntity::class.java)!!)  }
         adapter?.swapList(userList)
     }
 
     private var recyclerView: RecyclerView? = null
+    private var txtSearch: EditText? = null
     private var adapter: UserListAdapter? = null
     private var handler: MyHandler? = null
     private var helper: MyFireBaseHelper? = null
@@ -54,9 +70,11 @@ class UserListFragment : Fragment(), ValueEventListener {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_alert_list, container, false)
         recyclerView = view.findViewById(R.id.recyclerView)
+        txtSearch = view.findViewById(R.id.txtSearch)
         adapter = UserListAdapter(context)
         recyclerView?.adapter = adapter
         recyclerView?.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
+        txtSearch?.addTextChangedListener(this)
         return view
     }
 

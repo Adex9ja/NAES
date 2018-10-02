@@ -75,7 +75,7 @@ class MyFirebaseInstanceIDService :  FirebaseMessagingService() {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val contentIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        var mBuilder = NotificationCompat.Builder(context!!, context?.getString(R.string.app_name))
+        var mBuilder = NotificationCompat.Builder(context!!, context.getString(R.string.app_name))
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
                 .setContentText(message)

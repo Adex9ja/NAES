@@ -23,11 +23,27 @@ class ProfileActivity : AppCompatActivity(), OnCompleteListener<Void>, AdapterVi
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when(position){
-            0 -> spDepartment?.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.sict))
-            1 -> spDepartment?.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.set))
-            2 -> spDepartment?.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.saat))
-            3 -> spDepartment?.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.seet))
-            4 -> spDepartment?.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, resources.getStringArray(R.array.semt))
+            0 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.select))
+            1 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.sict))
+            2 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.set))
+            3 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.saat))
+            4 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.seet))
+            5 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.semt))
+            6 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.sls))
+            7 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.sps))
+            8 -> spDepartment?.adapter = ArrayAdapter(this,  android.R.layout.simple_list_item_1, resources.getStringArray(R.array.sste))
+        }
+
+        when(spFaculty.selectedItemPosition){
+            0 -> resources?.getStringArray(R.array.select)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
+            1 -> resources?.getStringArray(R.array.sict)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
+            2 -> resources?.getStringArray(R.array.set)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
+            3 -> resources?.getStringArray(R.array.saat)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
+            4 -> resources?.getStringArray(R.array.seet)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
+            5 -> resources?.getStringArray(R.array.semt)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
+            6 -> resources?.getStringArray(R.array.sls)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
+            7 -> resources?.getStringArray(R.array.sps)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
+            8 -> resources?.getStringArray(R.array.sste)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
         }
     }
 
@@ -58,29 +74,25 @@ class ProfileActivity : AppCompatActivity(), OnCompleteListener<Void>, AdapterVi
         txtStudentId.setText(loggedInUser?.studentId)
         txtMatricNo.setText(loggedInUser?.matricNo)
         txtPhone.setText(loggedInUser?.phoneNo)
+        txtPassword.setText(loggedInUser?.password)
         resources?.getStringArray(R.array.faculty)?.indexOf(loggedInUser?.faculty)?.let { spFaculty.setSelection(it) }
-        when(spFaculty.selectedItemPosition){
-            0 -> resources?.getStringArray(R.array.sict)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
-            1 -> resources?.getStringArray(R.array.set)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
-            2 -> resources?.getStringArray(R.array.saat)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
-            3 -> resources?.getStringArray(R.array.seet)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
-            4 -> resources?.getStringArray(R.array.semt)?.indexOf(loggedInUser?.department)?.let { spDepartment.setSelection(it) }
-        }
     }
 
     private fun attemptSubmit() {
         val name = txtFullName.text.toString()
         val studId = txtStudentId.text.toString()
         val matric = txtMatricNo.text.toString()
+        val password = txtPassword.text.toString()
         val faculty = spFaculty.selectedItem.toString()
         val department = spDepartment.selectedItem.toString()
 
-        if(name.isNullOrEmpty() || matric.isNullOrEmpty() || studId.isNullOrEmpty()){
+        if(name.isNullOrEmpty() || matric.isNullOrEmpty() || studId.isNullOrEmpty() || spFaculty?.selectedItemPosition == 0 || password.isNullOrEmpty()){
             Toast.makeText(this, getString(R.string.required_field), Toast.LENGTH_SHORT).show()
             return
         }
 
-        loggedInUser?.fullName = name; loggedInUser?.faculty = faculty; loggedInUser?.studentId = studId; loggedInUser?.department = department; loggedInUser?.matricNo = matric
+        loggedInUser?.fullName = name; loggedInUser?.faculty = faculty; loggedInUser?.studentId = studId; loggedInUser?.department = department;
+        loggedInUser?.matricNo = matric; loggedInUser?.password = password
         handler?.sendEmptyMessage(0)
         helper?.submitToDB(getString(R.string.user_entity), loggedInUser?.studentId, loggedInUser, this)
     }

@@ -32,7 +32,7 @@ class UserListAdapter(context: Context?) : RecyclerView.Adapter<UserListAdapter.
     }
 
     fun swapList(titleList:ArrayList<UserEntity>?){
-        titleList?.sortedByDescending { it.fullName }?.let { this.titleList = ArrayList(it) }
+        this.titleList = ArrayList(titleList?.reversed())
         notifyDataSetChanged()
     }
     override fun getItemCount(): Int {
@@ -50,7 +50,7 @@ class UserListAdapter(context: Context?) : RecyclerView.Adapter<UserListAdapter.
 
     inner class  MyPlaceHolder(itemView : View) : RecyclerView.ViewHolder(itemView), OnCompleteListener<Void> {
         override fun onComplete(task: Task<Void>) {
-            if(task?.isSuccessful)
+            if(task.isSuccessful)
                 handler?.obtainMessage(1, "Completed Successfully")?.sendToTarget()
             else
                 handler?.obtainMessage(1, task.exception?.message)?.sendToTarget()
@@ -95,6 +95,7 @@ class UserListAdapter(context: Context?) : RecyclerView.Adapter<UserListAdapter.
         }
         private fun loadAppropriateUser(title: UserEntity?) {
             AlertDialog.Builder(context!!)
+                    .setIcon(R.drawable.user)
                     .setTitle("User Detail")
                     .setMessage(getDetail(title))
                     .setPositiveButton("Okay"){dialog, _ -> dialog.dismiss() }

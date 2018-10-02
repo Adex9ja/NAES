@@ -10,5 +10,6 @@ class UserEntity : Serializable {
     var phoneNo: String? = null
     var faculty: String? = null
     var department: String? = null
+    var password: String? = null
     var userRole: UserRole = UserRole.USER
 }

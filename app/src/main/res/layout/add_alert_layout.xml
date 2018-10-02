@@ -83,26 +83,38 @@
                        android:layout_marginLeft="@dimen/medium"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:entries="@array/faculty"></android.support.v7.widget.AppCompatSpinner>
+                       android:entries="@array/faculty"/>
                </LinearLayout>
-               <TextView
-                   style="@style/my_text_view"
-                   android:text="Department"/>
+               <Switch
+                   android:id="@+id/swFaculty"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Notify All Departments"/>
+
                <LinearLayout
-                   android:layout_marginTop="@dimen/small"
+                   android:orientation="vertical"
+                   android:id="@+id/deptLayout"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content">
                    <TextView
-                       android:drawableTint="@color/colorPrimaryDark"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:drawableLeft="@drawable/department"/>
-                   <android.support.v7.widget.AppCompatSpinner
-                       android:id="@+id/spDepartment"
-                       android:layout_marginLeft="@dimen/fab_margin"
+                       style="@style/my_text_view"
+                       android:text="Department"/>
+                   <LinearLayout
+                       android:layout_marginTop="@dimen/small"
                        android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       android:entries="@array/sict"></android.support.v7.widget.AppCompatSpinner>
+                       android:layout_height="wrap_content">
+                       <TextView
+                           android:drawableTint="@color/colorPrimaryDark"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:drawableLeft="@drawable/department"/>
+                       <android.support.v7.widget.AppCompatSpinner
+                           android:id="@+id/spDepartment"
+                           android:layout_marginLeft="@dimen/medium"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:entries="@array/sict"></android.support.v7.widget.AppCompatSpinner>
+                   </LinearLayout>
                </LinearLayout>
 
            </LinearLayout>

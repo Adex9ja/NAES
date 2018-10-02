@@ -4,7 +4,6 @@ package ng.neas.com.utils;
 
 import android.app.Activity;
 
-import com.elkanahtech.widerpay.myutils.StringUtils;
 import com.elkanahtech.widerpay.myutils.listeners.MyCallBackListener;
 
 import org.json.JSONObject;
@@ -14,15 +13,13 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HttpsURLConnection;
 
 import ng.neas.com.R;
-import ng.neas.com.model.FirebasePushEntity;
+import ng.neas.com.model.AlertEntity;
 
 
 /**
@@ -30,7 +27,7 @@ import ng.neas.com.model.FirebasePushEntity;
  */
 
 public class NetworkUtils {
-    public static void postRequest(final Activity activity, final FirebasePushEntity pushEntity , final MyCallBackListener listener, final int callCode ){
+    public static void postRequest(final Activity activity, final AlertEntity pushEntity , final MyCallBackListener listener, final int callCode ){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -51,8 +48,8 @@ public class NetworkUtils {
 
                     json.put("to", "/topics/Alert");
                     JSONObject info = new JSONObject();
-                    info.put("title", pushEntity.getTitle());
-                    info.put("message", pushEntity.getMessage());
+                    info.put("title", alertType( pushEntity.getFaculty(), pushEntity.getDepartment()) + " - " + pushEntity.getTitle());
+                    info.put("message", pushEntity.getDetail());
                     json.put("notification", info);
                     String postData = json.toString();
                     if(postData != null){
@@ -85,6 +82,18 @@ public class NetworkUtils {
                 }
             }
         }).start();
+    }
+
+    private static String alertType(String faculty, String department) {
+        switch (faculty){
+            case "General":
+                return "General Alert";
+            default:
+                if(department.equals("General"))
+                    return "Faculty Alert";
+                else
+                    return "Departmental Alert";
+        }
     }
 
 }

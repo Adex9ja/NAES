@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:scrollbars="none"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity$LoginFragment">
+    tools:context=".fragments.LoginFragment">
    <LinearLayout
        android:orientation="vertical"
        android:layout_width="match_parent"
@@ -40,13 +40,13 @@
 
            <EditText
                style="@style/my_text_view"
-               android:drawableLeft="@drawable/phone"
+               android:drawableLeft="@drawable/pass"
                android:drawablePadding="@dimen/fab_margin"
                android:drawableTint="@color/colorPrimary"
-               android:id="@+id/txtPhone"
-               android:hint="Enter Phone Number"
+               android:id="@+id/txtPassword"
+               android:hint="Enter Password"
                android:imeOptions="actionUnspecified"
-               android:inputType="phone"
+               android:inputType="textPassword"
                android:maxLines="1"/>
 
        </android.support.design.widget.TextInputLayout>

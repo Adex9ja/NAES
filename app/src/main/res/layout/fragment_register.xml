@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity$LoginFragment">
+    tools:context=".fragments.LoginFragment">
    <LinearLayout
        android:orientation="vertical"
        android:layout_width="match_parent"
@@ -74,6 +74,22 @@
                android:id="@+id/txtPhone"
                android:hint="Phone Number"
                android:inputType="phone"
+               android:maxLines="1"/>
+
+       </android.support.design.widget.TextInputLayout>
+       <android.support.design.widget.TextInputLayout
+           android:layout_marginTop="@dimen/medium"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <EditText
+               android:singleLine="true"
+               style="@style/my_text_view"
+               android:drawableLeft="@drawable/pass"
+               android:drawablePadding="@dimen/fab_margin"
+               android:drawableTint="@color/colorPrimary"
+               android:id="@+id/txtPassword"
+               android:hint="Password"
+               android:inputType="textPassword"
                android:maxLines="1"/>
 
        </android.support.design.widget.TextInputLayout>

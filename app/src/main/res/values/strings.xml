@@ -7,9 +7,14 @@
     <string name="address_path">https://fcm.googleapis.com/fcm/send</string>
     <string name="server_key">AAAA1SboZmQ:APA91bFlbTfV9Syk5ZrvIjY3K7dRTyV-0UARqMpTozsD9Y9A0C_jMpYwbqBxzJFyoJ_0iZzbRYHEwnspcpimsOp73COvogUH9iEd59hW5haoUe_-vYM2MZ8OJDjL6ELhw8ELOSvr1ehH</string>
     <string name="loggedInUser">loggedInUser</string>
+    <string name="isAlertLoaded">isAlertLoaded</string>
     <string name="jsonRequest">data</string>
+    <string name="title">title</string>
     <string name="general">General</string>
     <string name="title_activity_login_acticity">LoginActivity</string>
+    <string name="title_feedback">Feed Back</string>
+    <string name="feedback_entity">feedback_entity</string>
+    <string name="title_profile">Update Profile</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="required_field">All fields are required</string>
@@ -18,6 +23,7 @@
     <string name="tab_text_1">Login</string>
     <string name="tab_text_2">Sign Up</string>
     <string-array name="faculty">
+        <item>Select Faculty</item>
         <item>School of Information and Communication Technology (SICT)</item>
         <item>School of Environmental Technology (SET)</item>
         <item>School of Agriculture and Agricultural Technology (SAAT)</item>
@@ -65,5 +71,37 @@
         <item>Transport Management</item>
         <item>Project Management</item>
         <item>Entrepreneurship And Business Studies</item>
+    </string-array>
+    <string-array name="sste">
+        <item>Educational Technology</item>
+        <item>Science Education</item>
+        <item>Information Technology Education</item>
+    </string-array>
+    <string-array name="sps">
+        <item>Chemistry</item>
+        <item>Geography</item>
+        <item>Geology</item>
+        <item>Mathematics</item>
+        <item>Physics</item>
+        <item>Statistics</item>
+    </string-array>
+    <string-array name="sls">
+        <item>Biochemistry</item>
+        <item>Microbiology</item>
+        <item>Plant Biology</item>
+        <item>Animal Biology</item>
+    </string-array>
+    <string-array name="select">
+        <item>Select Department</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="news_entity">news_entity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="new_activity">News / Upcoming Event</string>
+    <string-array name="content_type">
+        <item>News</item>
+        <item>Upcoming Event</item>
     </string-array>
 </resources>

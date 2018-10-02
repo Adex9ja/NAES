@@ -21,5 +21,11 @@ class MySharedPreference(private val context: Context) {
             editor.putString(context.getString(R.string.loggedInUser), username)
             editor.commit()
         }
+    var isAlertLoaded: Int?
+        get() = pref.getInt(context.getString(R.string.isAlertLoaded), -1)
+        set(alert){
+            editor.putInt(context.getString(R.string.isAlertLoaded), alert ?: -1)
+            editor.commit()
+        }
 
 }
