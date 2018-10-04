@@ -12,22 +12,21 @@ import com.google.firebase.messaging.RemoteMessage
 import android.support.v4.app.NotificationCompat
 import android.support.v4.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
 import ng.neas.com.MainActivity
 import ng.neas.com.R
-
-
+import ng.neas.com.data.MySharedPreference
+import ng.neas.com.model.AlertEntity
+import ng.neas.com.model.UserEntity
 
 
 class MyFirebaseInstanceIDService :  FirebaseMessagingService() {
-
-
-
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         super.onMessageReceived(remoteMessage)
         if (remoteMessage?.data?.size ?:0 >  0)
             handleData( remoteMessage?.data)
         if (remoteMessage?.notification != null)
-           handleMessage(remoteMessage.notification?.body, remoteMessage.notification?.title)
+            handleMessage(remoteMessage.notification?.body, remoteMessage.notification?.title)
     }
 
     private fun handleData(data: Map<String, String>?) {
@@ -62,13 +61,6 @@ class MyFirebaseInstanceIDService :  FirebaseMessagingService() {
             notificationManager?.createNotificationChannel(channel)
         }
 
-//        var intent = Intent(context, MainActivity::class.java)
-//        intent.putExtra(getString(R.string.data), title)
-//        intent.putExtra(getString(R.string.full_meaning), message)
-//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//        var pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-
-
         val intent = Intent(null, Uri.parse("some data"), context, MainActivity::class.java)
         intent.putExtra(getString(R.string.data), title)
         intent.putExtra(getString(R.string.full_meaning), message)
@@ -85,6 +77,5 @@ class MyFirebaseInstanceIDService :  FirebaseMessagingService() {
                 .build()
         var notificationManager = NotificationManagerCompat.from(context)
         notificationManager.notify(100, mBuilder)
-
     }
 }

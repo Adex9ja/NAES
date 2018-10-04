@@ -41,31 +41,10 @@ class AlertListFragment : Fragment() {
         recyclerView?.adapter = adapter
         recyclerView?.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
         loadData()
-        //markRead()
         txtSearch?.visibility = View.GONE
         return view
     }
 
-    private fun markRead() {
-        when(itemId){
-            R.id.faculty ->     {
-                Repository.updateAlert(activity?.contentResolver, MyContentProvider.KEY_FACULTY + " = '" + user?.faculty + "' and " + MyContentProvider.KEY_DEPARTMENT + " = '" + getString(R.string.general) + "'")
-                App.alertList?.apply { this.forEach { if(it.faculty == user?.faculty && it.department == getString(R.string.general) && it.status == ApprovalStatus.APPROVED) it.messageStatus = MessageStatus.READ } }
-            }
-            R.id.department ->  {
-                Repository.updateAlert(activity?.contentResolver, MyContentProvider.KEY_FACULTY + " <> '" + getString(R.string.general) + "' and " + MyContentProvider.KEY_DEPARTMENT + " = '" + user?.department + "'")
-                App.alertList?.apply { this.forEach { if(it.faculty != getString(R.string.general) && it.department == user?.department && it.status == ApprovalStatus.APPROVED) it.messageStatus = MessageStatus.READ } }
-            }
-            R.id.general ->     {
-                Repository.updateAlert(activity?.contentResolver, MyContentProvider.KEY_FACULTY + " = '" + getString(R.string.general) + "'")
-                App.alertList?.apply { this.forEach { if(it.faculty == getString(R.string.general) && it.status == ApprovalStatus.APPROVED) it.messageStatus = MessageStatus.READ } }
-            }
-            R.id.menu_hotlist -> {
-                Repository.updateAlert(activity?.contentResolver, MyContentProvider.KEY_MESSAGE_STATUS + " = '" + MessageStatus.UNREAD.toString() + "'")
-                App.alertList?.apply { this.forEach { if(it.status == ApprovalStatus.APPROVED && it.messageStatus == MessageStatus.UNREAD) it.messageStatus = MessageStatus.READ } }
-            }
-        }
-    }
 
     private fun loadData() {
         when(itemId){
@@ -73,7 +52,7 @@ class AlertListFragment : Fragment() {
             R.id.department -> App.alertList?.filter { it.faculty != getString(R.string.general) && it.department == user?.department && it.status == ApprovalStatus.APPROVED}?.let { adapter?.swapList(ArrayList(it)) }
             R.id.general -> App.alertList?.filter { it.faculty == getString(R.string.general) && it.status == ApprovalStatus.APPROVED }?.let { adapter?.swapList(ArrayList(it)) }
             R.id.unapproved -> App.alertList?.filter { it.status == ApprovalStatus.PENDING }?.let { adapter?.swapList(ArrayList(it)) }
-            else -> App.alertList?.asSequence()?.filter { it.faculty == user?.faculty || it.faculty == getString(R.string.general) || it.department == user?.department || it.department == getString(R.string.general) }?.filter { it.status == ApprovalStatus.APPROVED && it.messageStatus == MessageStatus.UNREAD }?.toList()?.let { adapter?.swapList(ArrayList(it)) }
+            else -> App.alertList?.asSequence()?.filter { it.faculty == user?.faculty || it.faculty == getString(R.string.general) || it.department == user?.department  }?.filter { it.status == ApprovalStatus.APPROVED && it.messageStatus == MessageStatus.UNREAD }?.toList()?.let { adapter?.swapList(ArrayList(it)) }
         }
     }
 

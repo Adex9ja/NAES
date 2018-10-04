@@ -217,11 +217,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onResume() {
         super.onResume()
-        App.alertList?.asSequence()?.filter { it.faculty == user?.faculty || it.faculty == getString(R.string.general) || it.department == user?.department || it.department == getString(R.string.general) }?.filter { it.messageStatus == MessageStatus.UNREAD && it.status == ApprovalStatus.APPROVED}?.count()?.let { updateNotification(it) }
+        App.alertList?.asSequence()?.filter { it.faculty == user?.faculty || it.faculty == getString(R.string.general) || it.department == user?.department }?.filter { it.messageStatus == MessageStatus.UNREAD && it.status == ApprovalStatus.APPROVED}?.count()?.let { updateNotification(it) }
         App.alertList?.asSequence()?.filter { it.status == ApprovalStatus.PENDING }?.count()?.let { updatePendingNotification(it) }
         App.alertList?.asSequence()?.filter {it.faculty == getString(R.string.general) && it.status == ApprovalStatus.APPROVED && it.messageStatus == MessageStatus.UNREAD}?.count()?.let { updateGeneralNotification(it) }
         App.alertList?.asSequence()?.filter {it.faculty == user?.faculty && it.department == getString(R.string.general) && it.status == ApprovalStatus.APPROVED && it.messageStatus == MessageStatus.UNREAD}?.count()?.let { updateFacultyNotification(it) }
         App.alertList?.asSequence()?.filter { it.faculty != getString(R.string.general) && it.department == user?.department && it.status == ApprovalStatus.APPROVED && it.messageStatus == MessageStatus.UNREAD}?.count()?.let { updateDepartNotification(it) }
+
         App.feedBackList?.asSequence()?.filter { it.status == MessageStatus.UNREAD }?.count()?.let { updateFeedBackCount(it) }
         App.newsList?.asSequence()?.filter { it.status == MessageStatus.UNREAD }?.count()?.let { updateNewsCount(it) }
     }
