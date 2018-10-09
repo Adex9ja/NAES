@@ -106,7 +106,7 @@ class UserListAdapter(context: Context?) : RecyclerView.Adapter<UserListAdapter.
         private fun getDetail(user: UserEntity?): String {
             var sb = StringBuilder()
             sb.append("Full Name :\t" + user?.fullName + "\n\n")
-            sb.append("Faculty :\t" + user?.faculty + "\n\n")
+            sb.append("School :\t" + user?.faculty + "\n\n")
             sb.append("Department :\t" + user?.department + "\n\n")
             sb.append("Phone Number :\t" + user?.phoneNo + "\n\n")
             sb.append("Matric No :\t" + user?.matricNo + "\n\n")

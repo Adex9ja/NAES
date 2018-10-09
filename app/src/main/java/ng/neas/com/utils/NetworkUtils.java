@@ -90,7 +90,7 @@ public class NetworkUtils {
                 return "General Alert";
             default:
                 if(department.equals("General"))
-                    return "Faculty Alert";
+                    return "School Alert";
                 else
                     return "Departmental Alert";
         }
