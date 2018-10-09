@@ -25,7 +25,7 @@
                app:actionLayout="@layout/notification_icon"
                android:id="@+id/faculty"
                android:icon="@drawable/location"
-               android:title="Faculty Alert" />
+               android:title="School Alert" />
            <item
                app:actionLayout="@layout/notification_icon"
                android:id="@+id/department"

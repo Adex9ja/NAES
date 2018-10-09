@@ -23,7 +23,7 @@
     <string name="tab_text_1">Login</string>
     <string name="tab_text_2">Sign Up</string>
     <string-array name="faculty">
-        <item>Select Faculty</item>
+        <item>Select School</item>
         <item>School of Information and Communication Technology (SICT)</item>
         <item>School of Environmental Technology (SET)</item>
         <item>School of Agriculture and Agricultural Technology (SAAT)</item>

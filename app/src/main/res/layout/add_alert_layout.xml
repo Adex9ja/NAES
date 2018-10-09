@@ -67,7 +67,7 @@
                android:layout_height="wrap_content">
                <TextView
                    style="@style/my_text_view"
-                   android:text="Faculty"/>
+                   android:text="School"/>
                <LinearLayout
                    android:layout_marginTop="@dimen/medium"
                    android:layout_marginBottom="@dimen/medium"
